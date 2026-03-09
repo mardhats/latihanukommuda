@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UKOM Statistisi Ahli Muda 2025 — Latihan Soal</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #faf8f4;
+    --surface: #ffffff;
+    --surface2: #f5f2ec;
+    --border: #e8e2d9;
+    --border-strong: #c8bfb0;
+    --text: #1a1714;
+    --text2: #5a5248;
+    --text3: #8a7e74;
+    --accent: #b85c2a;
+    --accent-soft: #f5ede6;
+    --accent2: #2a6b8a;
+    --accent2-soft: #e6f2f7;
+    --green: #2d6a4f;
+    --green-soft: #e8f5ef;
+    --red: #8b1a1a;
+    --red-soft: #fdeaea;
+    --gold: #b8860b;
+    --gold-soft: #fdf8e7;
+    --shadow: 0 2px 12px rgba(0,0,0,0.06);
+    --shadow-lg: 0 8px 32px rgba(0,0,0,0.10);
+    --radius: 12px;
+    --radius-sm: 8px;
+    --font-size: 15px;
+    --line-height: 1.7;
+  }
+  [data-size="small"] { --font-size: 13px; --line-height: 1.6; }
+  [data-size="large"] { --font-size: 17px; --line-height: 1.8; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-size: var(--font-size);
+    line-height: var(--line-height);
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    transition: font-size 0.2s;
+  }
+
+  /* TOP BAR */
+  .topbar {
+    background: var(--surface);
+    border-bottom: 2px solid var(--border);
+    padding: 0 24px;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 60px; position: sticky; top: 0; z-index: 100;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  }
+  .topbar-logo {
+    font-family: 'Playfair Display', serif; font-size: 18px; color: var(--accent);
+    display: flex; align-items: center; gap: 10px;
+  }
+  .topbar-logo span.bps-badge {
+    background: var(--accent); color: white;
+    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    padding: 2px 7px; border-radius: 4px; letter-spacing: 0.05em;
+  }
+  .topbar-actions { display: flex; align-items: center; gap: 10px; }
+  .btn-icon {
+    background: none; border: 1.5px solid var(--border);
+    border-radius: var(--radius-sm); padding: 6px 12px;
+    cursor: pointer; font-size: 13px; color: var(--text2);
+    font-family: 'Source Serif 4', serif;
+    display: flex; align-items: center; gap: 6px; transition: all 0.15s;
+  }
+  .btn-icon:hover { background: var(--surface2); border-color: var(--border-strong); }
+
+  /* SETTINGS */
+  .settings-overlay {
+    display: none; position: fixed; inset: 0;
+    background: rgba(0,0,0,0.3); z-index: 200; backdrop-filter: blur(4px);
+  }
+  .settings-overlay.open { display: flex; align-items: flex-start; justify-content: flex-end; padding: 70px 24px 0; }
+  .settings-panel {
+    background: var(--surface); border: 1.5px solid var(--border);
+    border-radius: var(--radius); box-shadow: var(--shadow-lg);
+    padding: 24px; width: 300px; animation: slideIn 0.2s ease;
+  }
+  @keyframes slideIn { from { opacity:0; transform:translateY(-10px); } to { opacity:1; transform:translateY(0); } }
+  .settings-title {
+    font-family: 'Playfair Display', serif; font-size: 16px;
+    margin-bottom: 20px; border-bottom: 1px solid var(--border); padding-bottom: 12px;
+  }
+  .setting-group { margin-bottom: 20px; }
+  .setting-label { font-size: 12px; letter-spacing: 0.08em; color: var(--text3); text-transform: uppercase; margin-bottom: 8px; }
+  .setting-options { display: flex; gap: 6px; flex-wrap: wrap; }
+  .setting-btn {
+    padding: 6px 14px; border: 1.5px solid var(--border); border-radius: 20px;
+    cursor: pointer; font-size: 13px; background: var(--surface); color: var(--text2);
+    font-family: 'Source Serif 4', serif; transition: all 0.15s;
+  }
+  .setting-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .setting-btn.active { background: var(--accent); border-color: var(--accent); color: white; }
+  .toggle-wrap { display: flex; align-items: center; justify-content: space-between; }
+  .toggle {
+    width: 44px; height: 24px; background: var(--border);
+    border-radius: 12px; position: relative; cursor: pointer; border: none; transition: background 0.2s;
+  }
+  .toggle.on { background: var(--green); }
+  .toggle::after {
+    content: ''; position: absolute; width: 18px; height: 18px;
+    background: white; border-radius: 50%; top: 3px; left: 3px;
+    transition: left 0.2s; box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  }
+  .toggle.on::after { left: 23px; }
+
+  /* HOME */
+  #screen-home { max-width: 800px; margin: 0 auto; padding: 60px 24px; }
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px,5vw,52px); line-height: 1.15; margin-bottom: 12px;
+  }
+  .hero-title em { color: var(--accent); font-style: normal; }
+  .hero-sub { color: var(--text2); font-size: 16px; margin-bottom: 40px; max-width: 500px; }
+  .mode-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 40px; }
+  @media(max-width:540px){ .mode-grid { grid-template-columns:1fr; } }
+  .mode-card {
+    background: var(--surface); border: 2px solid var(--border);
+    border-radius: var(--radius); padding: 28px; cursor: pointer;
+    transition: all 0.2s; position: relative; overflow: hidden;
+  }
+  .mode-card::before {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(135deg, transparent 60%, var(--accent-soft));
+    opacity: 0; transition: opacity 0.3s;
+  }
+  .mode-card:hover { border-color: var(--accent); transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+  .mode-card:hover::before { opacity: 1; }
+  .mode-card.mode-b::before { background: linear-gradient(135deg, transparent 60%, var(--accent2-soft)); }
+  .mode-card.mode-b:hover { border-color: var(--accent2); }
+  .mode-icon { font-size: 32px; margin-bottom: 12px; }
+  .mode-name { font-family: 'Playfair Display', serif; font-size: 18px; margin-bottom: 8px; color: var(--accent); }
+  .mode-card.mode-b .mode-name { color: var(--accent2); }
+  .mode-desc { font-size: 13px; color: var(--text2); line-height: 1.5; }
+  .mode-count {
+    display: inline-block; margin-top: 12px;
+    background: var(--accent-soft); color: var(--accent);
+    font-family: 'JetBrains Mono', monospace; font-size: 11px; padding: 3px 10px; border-radius: 20px;
+  }
+  .mode-card.mode-b .mode-count { background: var(--accent2-soft); color: var(--accent2); }
+  .stats-bar {
+    display: grid; grid-template-columns: repeat(3,1fr); gap: 16px;
+    background: var(--surface); border: 1.5px solid var(--border);
+    border-radius: var(--radius); padding: 20px;
+  }
+  .stat-item { text-align: center; }
+  .stat-num { font-family: 'Playfair Display', serif; font-size: 28px; color: var(--accent); }
+  .stat-label { font-size: 12px; color: var(--text3); margin-top: 2px; }
+
+  /* QUIZ */
+  #screen-quiz { display: none; }
+  .quiz-header {
+    background: var(--surface); border-bottom: 1.5px solid var(--border);
+    padding: 16px 24px; display: flex; align-items: center; gap: 16px;
+  }
+  .back-btn {
+    background: none; border: 1.5px solid var(--border);
+    border-radius: var(--radius-sm); padding: 6px 14px;
+    cursor: pointer; color: var(--text2); font-size: 13px;
+    font-family: 'Source Serif 4', serif; display: flex; align-items: center; gap: 6px;
+    transition: all 0.15s; white-space: nowrap;
+  }
+  .back-btn:hover { background: var(--surface2); }
+  .quiz-title { font-family: 'Playfair Display', serif; font-size: 16px; flex: 1; }
+  .quiz-score-chip {
+    background: var(--gold-soft); color: var(--gold);
+    font-family: 'JetBrains Mono', monospace; font-size: 12px;
+    padding: 4px 12px; border-radius: 20px; border: 1px solid #e8d080; white-space: nowrap;
+  }
+  .progress-wrap { padding: 12px 24px; background: var(--surface); border-bottom: 1px solid var(--border); }
+  .progress-bar { height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; margin-bottom: 8px; }
+  .progress-fill { height: 100%; background: linear-gradient(90deg,var(--accent),#d4793e); border-radius: 3px; transition: width 0.4s ease; }
+  .progress-dots { display: flex; gap: 4px; flex-wrap: wrap; }
+  .dot {
+    width: 22px; height: 22px; border-radius: 50%; background: var(--border); cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 9px; font-family: 'JetBrains Mono', monospace; color: var(--text3);
+    transition: all 0.15s; border: 1.5px solid transparent;
+  }
+  .dot:hover { border-color: var(--accent); }
+  .dot.correct { background: var(--green-soft); color: var(--green); border-color: var(--green); }
+  .dot.wrong { background: var(--red-soft); color: var(--red); border-color: var(--red); }
+  .dot.current { box-shadow: 0 0 0 3px rgba(184,92,42,0.25); border-color: var(--accent); }
+  .quiz-body { max-width: 800px; margin: 0 auto; padding: 32px 24px; }
+  .question-card {
+    background: var(--surface); border: 1.5px solid var(--border);
+    border-radius: var(--radius); padding: 32px; box-shadow: var(--shadow);
+    animation: fadeUp 0.25s ease;
+  }
+  @keyframes fadeUp { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
+  .q-number {
+    font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--accent);
+    letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 12px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .q-number::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  .q-text { font-size: calc(var(--font-size) + 1px); line-height: var(--line-height); margin-bottom: 28px; }
+  .options { display: flex; flex-direction: column; gap: 10px; }
+  .option {
+    display: flex; align-items: flex-start; gap: 14px;
+    padding: 14px 18px; border: 1.5px solid var(--border);
+    border-radius: var(--radius-sm); cursor: pointer;
+    transition: all 0.15s; background: var(--surface);
+  }
+  .option:hover:not(.disabled) { border-color: var(--accent); background: var(--accent-soft); }
+  .option.correct-ans { border-color: var(--green); background: var(--green-soft); }
+  .option.wrong-ans { border-color: var(--red); background: var(--red-soft); }
+  .option.disabled { cursor: default; }
+  .option-letter {
+    width: 28px; height: 28px; min-width: 28px; border-radius: 50%;
+    background: var(--surface2); border: 1.5px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 500; color: var(--text2);
+    transition: all 0.15s;
+  }
+  .option.correct-ans .option-letter { background: var(--green); border-color: var(--green); color: white; }
+  .option.wrong-ans .option-letter { background: var(--red); border-color: var(--red); color: white; }
+  .option-text { font-size: var(--font-size); line-height: var(--line-height); color: var(--text); }
+  .feedback {
+    margin-top: 20px; border-radius: var(--radius-sm); padding: 18px 20px;
+    animation: fadeUp 0.2s ease; border-left: 4px solid;
+  }
+  .feedback.correct { background: var(--green-soft); border-color: var(--green); }
+  .feedback.wrong { background: var(--red-soft); border-color: var(--red); }
+  .feedback-header {
+    display: flex; align-items: center; gap: 8px;
+    font-family: 'Playfair Display', serif; font-size: 15px; margin-bottom: 8px;
+  }
+  .feedback.correct .feedback-header { color: var(--green); }
+  .feedback.wrong .feedback-header { color: var(--red); }
+  .feedback-body { font-size: calc(var(--font-size) - 1px); color: var(--text2); line-height: 1.65; }
+  .feedback-formula {
+    margin-top: 10px; background: rgba(255,255,255,0.6); border-radius: var(--radius-sm);
+    padding: 10px 14px; font-family: 'JetBrains Mono', monospace; font-size: 12px;
+    border: 1px solid rgba(0,0,0,0.06);
+  }
+  .q-nav {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-top: 24px; gap: 12px;
+  }
+  .nav-btn {
+    padding: 10px 24px; border-radius: var(--radius-sm); cursor: pointer;
+    font-size: 14px; font-family: 'Source Serif 4', serif;
+    transition: all 0.15s; display: flex; align-items: center; gap: 8px;
+  }
+  .nav-btn.prev { background: var(--surface); border: 1.5px solid var(--border); color: var(--text2); }
+  .nav-btn.prev:hover { border-color: var(--border-strong); background: var(--surface2); }
+  .nav-btn.next { background: var(--accent); border: 1.5px solid var(--accent); color: white; }
+  .nav-btn.next:hover { background: #a04d22; }
+  .nav-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+  .q-counter { font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--text3); }
+
+  /* RESULTS */
+  #screen-results { display: none; max-width: 800px; margin: 0 auto; padding: 40px 24px; }
+  .result-card {
+    background: var(--surface); border: 1.5px solid var(--border);
+    border-radius: var(--radius); padding: 40px; text-align: center;
+    margin-bottom: 24px; box-shadow: var(--shadow);
+  }
+  .result-score-ring {
+    width: 120px; height: 120px; border-radius: 50%; border: 6px solid var(--border);
+    margin: 0 auto 20px; display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+  }
+  .result-score-ring.great { border-color: var(--green); }
+  .result-score-ring.good { border-color: var(--gold); }
+  .result-score-ring.poor { border-color: var(--red); }
+  .score-big { font-family: 'Playfair Display', serif; font-size: 36px; }
+  .score-pct { font-size: 13px; color: var(--text3); }
+  .result-title { font-family: 'Playfair Display', serif; font-size: 24px; margin-bottom: 8px; }
+  .result-sub { color: var(--text2); font-size: 15px; }
+  .result-breakdown { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin-top: 24px; }
+  .breakdown-item { padding: 16px; border-radius: var(--radius-sm); text-align: center; }
+  .breakdown-item.c { background: var(--green-soft); }
+  .breakdown-item.w { background: var(--red-soft); }
+  .breakdown-item.s { background: var(--surface2); }
+  .breakdown-num { font-family: 'Playfair Display', serif; font-size: 28px; }
+  .breakdown-item.c .breakdown-num { color: var(--green); }
+  .breakdown-item.w .breakdown-num { color: var(--red); }
+  .breakdown-label { font-size: 12px; color: var(--text2); margin-top: 2px; }
+  .result-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 24px; }
+  .btn-primary {
+    padding: 12px 24px; background: var(--accent); color: white; border: none;
+    border-radius: var(--radius-sm); cursor: pointer; font-size: 14px;
+    font-family: 'Source Serif 4', serif; transition: all 0.15s;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .btn-primary:hover { background: #a04d22; }
+  .btn-primary.blue { background: var(--accent2); }
+  .btn-primary.blue:hover { background: #1e506b; }
+  .btn-primary.green { background: var(--green); }
+  .btn-primary.green:hover { background: #1e4f39; }
+  .btn-secondary {
+    padding: 12px 24px; background: var(--surface); color: var(--text);
+    border: 1.5px solid var(--border); border-radius: var(--radius-sm); cursor: pointer;
+    font-size: 14px; font-family: 'Source Serif 4', serif; transition: all 0.15s;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .btn-secondary:hover { background: var(--surface2); }
+
+  /* REVIEW SCREEN */
+  #screen-review { display: none; max-width: 800px; margin: 0 auto; padding: 32px 24px; }
+  .review-header {
+    display: flex; align-items: center; gap: 16px; margin-bottom: 24px; flex-wrap: wrap;
+  }
+  .review-screen-title {
+    font-family: 'Playfair Display', serif; font-size: 22px; flex: 1;
+  }
+  .review-filter-tabs { display: flex; gap: 8px; }
+  .filter-tab {
+    padding: 7px 16px; border-radius: 20px; border: 1.5px solid var(--border);
+    cursor: pointer; font-size: 13px; font-family: 'Source Serif 4', serif;
+    background: var(--surface); color: var(--text2); transition: all 0.15s;
+  }
+  .filter-tab.active { background: var(--accent); border-color: var(--accent); color: white; }
+  .filter-tab.active.wrong-tab { background: var(--red); border-color: var(--red); }
+
+  /* Review accordion items */
+  .review-accordion { display: flex; flex-direction: column; gap: 10px; }
+  .rev-item {
+    background: var(--surface); border: 1.5px solid var(--border);
+    border-radius: var(--radius-sm); overflow: hidden; transition: box-shadow 0.2s;
+  }
+  .rev-item:hover { box-shadow: var(--shadow); }
+  .rev-item.correct { border-left: 4px solid var(--green); }
+  .rev-item.wrong { border-left: 4px solid var(--red); }
+  .rev-item.skipped { border-left: 4px solid var(--border-strong); }
+  .rev-header {
+    display: flex; align-items: center; gap: 12px;
+    padding: 14px 18px; cursor: pointer; user-select: none;
+  }
+  .rev-status-icon { font-size: 18px; min-width: 24px; }
+  .rev-q-preview {
+    flex: 1; font-size: 13px; color: var(--text); line-height: 1.4;
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  }
+  .rev-ans-quick {
+    font-size: 11px; font-family: 'JetBrains Mono', monospace;
+    padding: 2px 8px; border-radius: 4px; white-space: nowrap;
+  }
+  .rev-item.correct .rev-ans-quick { background: var(--green-soft); color: var(--green); }
+  .rev-item.wrong .rev-ans-quick { background: var(--red-soft); color: var(--red); }
+  .rev-item.skipped .rev-ans-quick { background: var(--surface2); color: var(--text3); }
+  .rev-chevron {
+    font-size: 14px; color: var(--text3); transition: transform 0.2s; min-width: 20px; text-align: center;
+  }
+  .rev-item.open .rev-chevron { transform: rotate(180deg); }
+  .rev-body {
+    display: none; padding: 0 18px 18px; border-top: 1px solid var(--border);
+    animation: fadeUp 0.2s ease;
+  }
+  .rev-item.open .rev-body { display: block; }
+  .rev-q-full {
+    font-size: calc(var(--font-size)); line-height: var(--line-height);
+    color: var(--text); padding: 14px 0 16px;
+  }
+  .rev-options { display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; }
+  .rev-option {
+    display: flex; align-items: flex-start; gap: 12px;
+    padding: 10px 14px; border-radius: var(--radius-sm); border: 1px solid var(--border);
+  }
+  .rev-option.correct-ans { background: var(--green-soft); border-color: var(--green); }
+  .rev-option.wrong-ans { background: var(--red-soft); border-color: var(--red); }
+  .rev-option.neutral-ans { background: var(--surface2); }
+  .rev-opt-letter {
+    width: 24px; height: 24px; min-width: 24px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'JetBrains Mono', monospace; font-size: 11px; border: 1px solid var(--border);
+    background: var(--surface); color: var(--text2);
+  }
+  .rev-option.correct-ans .rev-opt-letter { background: var(--green); border-color: var(--green); color: white; }
+  .rev-option.wrong-ans .rev-opt-letter { background: var(--red); border-color: var(--red); color: white; }
+  .rev-opt-text { font-size: calc(var(--font-size) - 1px); color: var(--text); line-height: 1.5; }
+  .rev-explanation {
+    background: var(--surface2); border-radius: var(--radius-sm); padding: 14px 16px;
+    border-left: 4px solid var(--accent2);
+  }
+  .rev-explanation-label {
+    font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--accent2);
+    letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px;
+  }
+  .rev-explanation-text { font-size: calc(var(--font-size) - 1px); color: var(--text2); line-height: 1.65; }
+  .rev-formula {
+    margin-top: 10px; background: rgba(255,255,255,0.7); border-radius: var(--radius-sm);
+    padding: 8px 12px; font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    border: 1px solid var(--border);
+  }
+  .empty-state {
+    text-align: center; padding: 48px 24px; color: var(--text3);
+  }
+  .empty-state .em-icon { font-size: 40px; margin-bottom: 12px; }
+  .empty-state .em-title { font-family: 'Playfair Display', serif; font-size: 18px; color: var(--text2); margin-bottom: 6px; }
+
+  @media(max-width:600px){
+    .topbar { padding: 0 16px; }
+    .quiz-body { padding: 20px 16px; }
+    .question-card { padding: 20px; }
+    .rev-q-preview { max-width: 160px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="topbar">
+  <div class="topbar-logo">
+    <span class="bps-badge">BPS</span>
+    Statistisi Ahli Muda
+  </div>
+  <div class="topbar-actions">
+    <button class="btn-icon" id="settingsBtn">⚙ Pengaturan</button>
+  </div>
+</nav>
+
+<div class="settings-overlay" id="settingsOverlay">
+  <div class="settings-panel" onclick="event.stopPropagation()">
+    <div class="settings-title">⚙ Pengaturan Tampilan</div>
+    <div class="setting-group">
+      <div class="setting-label">Ukuran Teks</div>
+      <div class="setting-options">
+        <button class="setting-btn" id="sz-small" onclick="setSize('small')">Kecil</button>
+        <button class="setting-btn active" id="sz-normal" onclick="setSize('normal')">Normal</button>
+        <button class="setting-btn" id="sz-large" onclick="setSize('large')">Besar</button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <div class="setting-label">Urutan Soal</div>
+      <div class="setting-options">
+        <button class="setting-btn active" id="qm-seq" onclick="setQuizMode('sequential')">Berurutan</button>
+        <button class="setting-btn" id="qm-rand" onclick="setQuizMode('random')">Acak</button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <div class="setting-label">Penjelasan Langsung</div>
+      <div class="toggle-wrap">
+        <span style="font-size:13px;color:var(--text2)">Tampil setelah menjawab</span>
+        <button class="toggle on" id="explainToggle" onclick="toggleExplain()"></button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <div class="setting-label">Progress Dots</div>
+      <div class="toggle-wrap">
+        <span style="font-size:13px;color:var(--text2)">Tampilkan progress dots</span>
+        <button class="toggle on" id="dotsToggle" onclick="toggleDots()"></button>
+      </div>
+    </div>
+    <button class="btn-primary" style="width:100%;justify-content:center;margin-top:4px;" onclick="closeSettings()">Tutup</button>
+  </div>
+</div>
+
+<!-- HOME -->
+<div id="screen-home">
+  <div style="max-width:800px;margin:0 auto;padding:60px 24px;">
+    <div class="hero-title">Latihan Soal<br><em>UKOM Statistisi</em><br>Ahli Muda</div>
+    <div class="hero-sub">Persiapkan diri untuk Uji Kompetensi BPS 2025. Jawab soal, pelajari penjelasannya, review hasil—raih skor terbaik.</div>
+    <div class="mode-grid">
+      <div class="mode-card" onclick="startQuiz('official')">
+        <div class="mode-icon">📋</div>
+        <div class="mode-name">Soal UKOM Resmi</div>
+        <div class="mode-desc">50 soal pilihan ganda dari latihan UKOM Statistisi Muda Agustus 2025.</div>
+        <div class="mode-count">50 soal PG</div>
+      </div>
+      <div class="mode-card mode-b" onclick="startQuiz('extra')">
+        <div class="mode-icon">🎓</div>
+        <div class="mode-name">Soal Tambahan</div>
+        <div class="mode-desc">35 soal prediksi untuk memperdalam materi statistika yang sering diuji.</div>
+        <div class="mode-count">35 soal PG</div>
+      </div>
+    </div>
+    <div class="stats-bar">
+      <div class="stat-item"><div class="stat-num">85</div><div class="stat-label">Total Soal</div></div>
+      <div class="stat-item"><div class="stat-num" id="stat-score">—</div><div class="stat-label">Skor Terakhir</div></div>
+      <div class="stat-item"><div class="stat-num" id="stat-wrong">—</div><div class="stat-label">Salah Terakhir</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- QUIZ -->
+<div id="screen-quiz">
+  <div class="quiz-header">
+    <button class="back-btn" onclick="goHome()">← Keluar</button>
+    <div class="quiz-title" id="quizTitleBar"></div>
+    <div class="quiz-score-chip" id="liveScore">0/0</div>
+  </div>
+  <div class="progress-wrap" id="progressWrap">
+    <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+    <div class="progress-dots" id="progressDots"></div>
+  </div>
+  <div class="quiz-body">
+    <div class="question-card" id="questionCard"></div>
+    <div class="q-nav">
+      <button class="nav-btn prev" id="btnPrev" onclick="navigate(-1)">← Sebelumnya</button>
+      <span class="q-counter" id="qCounter"></span>
+      <button class="nav-btn next" id="btnNext" onclick="navigate(1)">Selanjutnya →</button>
+    </div>
+  </div>
+</div>
+
+<!-- RESULTS -->
+<div id="screen-results">
+  <div style="max-width:800px;margin:0 auto;padding:40px 24px;">
+    <div class="result-card" id="resultCard"></div>
+  </div>
+</div>
+
+<!-- REVIEW -->
+<div id="screen-review">
+  <div class="review-header">
+    <button class="back-btn" onclick="backToResults()">← Kembali ke Hasil</button>
+    <div class="review-screen-title" id="reviewScreenTitle">Review Jawaban</div>
+    <div class="review-filter-tabs">
+      <button class="filter-tab active" id="tab-all" onclick="setReviewFilter('all')">Semua</button>
+      <button class="filter-tab wrong-tab" id="tab-wrong" onclick="setReviewFilter('wrong')">❌ Salah saja</button>
+    </div>
+  </div>
+  <div class="review-accordion" id="reviewAccordion"></div>
+</div>
+
+<script>
+// ─── SETTINGS ───
+const S = { size:'normal', mode:'sequential', explain:true, dots:true };
+
+function setSize(s) {
+  S.size = s;
+  document.body.removeAttribute('data-size');
+  if (s !== 'normal') document.body.setAttribute('data-size', s);
+  ['small','normal','large'].forEach(v => {
+    const id = 'sz-' + (v==='normal'?'normal':v==='small'?'small':'large');
+    const el = document.getElementById(id);
+    if (el) el.classList.toggle('active', v === s);
+  });
+}
+function setQuizMode(m) {
+  S.mode = m;
+  document.getElementById('qm-seq').classList.toggle('active', m==='sequential');
+  document.getElementById('qm-rand').classList.toggle('active', m==='random');
+}
+function toggleExplain() { S.explain=!S.explain; document.getElementById('explainToggle').classList.toggle('on',S.explain); }
+function toggleDots() {
+  S.dots=!S.dots;
+  document.getElementById('dotsToggle').classList.toggle('on',S.dots);
+  document.getElementById('progressWrap').style.display = S.dots ? '' : 'none';
+}
+function closeSettings() { document.getElementById('settingsOverlay').classList.remove('open'); }
+document.getElementById('settingsBtn').onclick = () => document.getElementById('settingsOverlay').classList.toggle('open');
+document.getElementById('settingsOverlay').onclick = closeSettings;
+
+// ─── DATA ───
+const officialQuestions = [
+  // Q1
+  { q:"Seorang peneliti melakukan percobaan terhadap pipa sebanyak 30 potong. 15 potong diberi lapisan pelindung jenis A dan sisanya jenis B. Kemudian pipa-pipa tersebut dikubur di suatu tempat dan setelah 1 bulan kemudian, diamati banyaknya lubang korosi dan kedalaman lubang korosi pada pipa. Hal tersebut dilakukan untuk menguji ada/tidaknya perbedaan efek pelapisan terhadap ketahanan pipa dari korosi dilihat dari banyaknya lubang korosi dan kedalaman lubang korosi. Jenis pengujian hipotesis yang paling sesuai untuk kasus tersebut adalah...",
+    options:["Uji beda rata-rata dua sampel independent univariate","Uji beda rata-rata sampel berpasangan univariate","Uji ANOVA","Uji beda rata-rata dua sampel independent multivariate","Uji beda rata-rata sampel berpasangan multivariate"],
+    answer:3, explanation:"Kasus ini melibatkan dua kelompok independen (pipa dengan lapisan A vs. B) dan <strong>dua variabel respons sekaligus</strong> (banyaknya lubang korosi DAN kedalaman lubang korosi). Karena ada lebih dari satu variabel dependen yang diuji bersamaan, maka uji yang tepat adalah <strong>Uji Beda Rata-rata Dua Sampel Independent Multivariate (MANOVA)</strong>." },
+  // Q2
+  { q:"Penarikan sampel pada kelompok elemen seperti desa, RT/RW, sekolah, merupakan fitur dari...",
+    options:["Stratified sampling","2-stage sampling","Multistage sampling","Cluster sampling","Simple random sampling"],
+    answer:3, explanation:"<strong>Cluster sampling</strong> adalah metode penarikan sampel di mana unit-unit populasi dikelompokkan dalam klaster alami (seperti desa, RT/RW, sekolah, blok sensus). Sampel diambil dengan memilih beberapa klaster secara acak, kemudian seluruh atau sebagian elemen dalam klaster terpilih diteliti." },
+  // Q3
+  { q:"Pendugaan 100(1-α) selang kepercayaan bagi perbedaan rata-rata sampel berpasangan memiliki margin of error sebesar...",
+    options:["t(α/2;n-2) · estimasi standar error","t(α/2;n-1) · estimasi standar error","t(α/2;n1+n2-1) · estimasi standar error","t(α/2;n1+n2-2) · estimasi standar error","Z(α) · estimasi standar error"],
+    answer:1, explanation:"Untuk selang kepercayaan perbedaan rata-rata sampel berpasangan, derajat bebas adalah <strong>n−1</strong>. Kita bekerja dengan satu sampel selisih (d = X₁ᵢ − X₂ᵢ) sebanyak n pasangan, sehingga df = n − 1. Margin of error = t(α/2; n−1) × s_d/√n.",
+    formula:"MoE = t(α/2; n−1) × (s_d / √n)" },
+  // Q4
+  { q:"Bagaimana prosedur pengolahan dan analisis data administrasi yang paling baik?",
+    options:["Data administrasi dapat diolah dan dianalisis menggunakan metode analisis statistik deskriptif.","Data administrasi dapat diolah dan dianalisis menggunakan tabel dan grafik yang dihasilkan.","Data administrasi dapat diolah dan dianalisis menggunakan uji statistik dengan error terkecil.","Data administrasi dapat diolah dan dianalisis menggunakan metode statistik inferensia.","Data administrasi dapat diolah dan dianalisis menggunakan metode statistik terbaik sesuai kebutuhan."],
+    answer:4, explanation:"Tidak ada satu metode tunggal yang selalu terbaik. Pilihan metode harus disesuaikan dengan <strong>tujuan analisis dan karakteristik data</strong>. Oleh karena itu jawaban yang paling tepat dan fleksibel adalah menggunakan metode statistik terbaik sesuai kebutuhan." },
+  // Q5
+  { q:"Jika jumlah sampel untuk menghitung selang kepercayaan estimasi rata-rata populasi ditingkatkan 9 kali lipat dan varians data menjadi 25%, maka margin of error selang kepercayaan estimasi rata-rata populasi tersebut menjadi...",
+    options:["3/2 kali margin of error dari selang kepercayaan estimasi rata-rata populasi semula","1/6 kali margin of error dari selang kepercayaan estimasi rata-rata populasi semula","9/4 kali margin of error dari selang kepercayaan estimasi rata-rata populasi semula","1/12 kali margin of error dari selang kepercayaan estimasi rata-rata populasi semula","3/4 kali margin of error dari selang kepercayaan estimasi rata-rata populasi semula"],
+    answer:1, explanation:"MoE = Z × σ/√n. Varians baru = 0,25σ² → σ_baru = 0,5σ. Sampel baru = 9n → √(9n) = 3√n. MoE_baru = Z × (0,5σ)/(3√n) = (1/6) × MoE_awal.",
+    formula:"MoE_baru = Z × (0,5σ) / (3√n) = (1/6) × MoE_awal" },
+  // Q6
+  { q:"Dengan sampel acak sebanyak seratus orang peserta ujian yang sudah mengikuti tes TKD mempunyai rata-rata nilai TKD sebesar 100 dengan simpangan baku sebesar 20. Dengan confidence level sebesar 95%, maka nilai batas atas penduga interval dari rata-rata nilai TKD seluruh peserta Tes tersebut adalah...",
+    options:["103,28","107,84","103,92","105,12","106,56"],
+    answer:2, explanation:"Batas atas = x̄ + Z(α/2) × σ/√n = 100 + 1,96 × 20/√100 = 100 + 1,96 × 2 = <strong>103,92</strong>.",
+    formula:"Batas atas = 100 + 1,96 × (20/√100) = 100 + 3,92 = 103,92" },
+  // Q7
+  { q:"Dalam melaksanakan kegiatan pengumpulan data primer di lapangan, peneliti perlu mempersiapkan beberapa hal terkait administrasi dan teknis. Menurut Anda, hal-hal teknis apa saja yang tidak perlu dipersiapkan oleh peneliti?",
+    options:["Mempersiapkan 'konsep dan definisi'.","Menentukan bentuk kegiatan.","Menentukan ruang lingkup.","Mempersiapkan tenaga kerja/petugas pendata dan perlengkapan pendataan.","Rencana pengolahan dan publikasi."],
+    answer:0, explanation:"'Konsep dan definisi' adalah bagian dari <strong>persiapan substantif/metodologis</strong>, bukan hal teknis lapangan. Hal teknis meliputi: bentuk kegiatan, ruang lingkup, penyiapan enumerator, perlengkapan, dan rencana pengolahan." },
+  // Q8
+  { q:"Secara umum, desain cluster sampling tidak lebih efisien dari desain simple random sampling. Hal ini berarti nilai Deff adalah...",
+    options:["Lebih besar dari satu","Sama dengan satu","Lebih kecil dari satu","Sama dengan dua","Lebih kecil dari dua"],
+    answer:0, explanation:"<strong>Design Effect (Deff)</strong> adalah rasio varians estimator desain tertentu terhadap varians estimator SRS. Jika Deff > 1, desain tersebut kurang efisien dibanding SRS. Cluster sampling menghasilkan Deff > 1 karena elemen dalam klaster cenderung homogen (ICC positif).",
+    formula:"Deff = Var(cluster) / Var(SRS) > 1" },
+  // Q9
+  { q:"Telah diketahui bahwa rata-rata waktu yang dibutuhkan oleh suatu obat untuk menyembuhkan penyakit adalah 3 hari. Bila ingin diketahui apakah obat baru lebih baik (lebih cepat), perumusan uji hipotesis yang dapat dituliskan sebagai...",
+    options:["H0: μ = 3 dan H1: μ > 3","H0: μ > 3 dan H1: μ < 3","H0: μ = 3 dan H1: μ ≠ 3","H0: μ < 3 dan H1: μ > 3","H0: μ ≥ 3 dan H1: μ < 3"],
+    answer:4, explanation:"'Lebih baik' berarti lebih CEPAT sembuh (waktu lebih kecil). H0: μ ≥ 3 (tidak lebih cepat), H1: μ < 3 (obat baru lebih cepat). Ini uji satu arah kiri." },
+  // Q10
+  { q:"Berikut ini beberapa asumsi yang harus dipenuhi dalam Exploratory Factor Analysis (EFA), kecuali...",
+    options:["Hanya untuk jenis data interval dan tidak dapat digunakan pada jenis data ordinal","Variabel yang digunakan merupakan berbagai variabel yang secara teoritis memiliki keterkaitan yang kuat satu dengan yang lainnya","Menggunakan data interval","Ukuran sampel minimum 5 kali banyaknya variabel yang diteliti","Data yang digunakan numerik"],
+    answer:0, explanation:"Pernyataan bahwa EFA <strong>tidak dapat digunakan pada data ordinal</strong> adalah TIDAK tepat. Dalam praktik, EFA sering diterapkan pada data ordinal dengan modifikasi (polychoric correlation), terutama dalam penelitian sosial. Jadi ini bukan asumsi EFA." },
+  // Q11 — DIKOREKSI: answer E (index 4)
+  { q:"Berikut ini adalah perbedaan mendasar dari metode sensus tradisional, metode sensus kombinasi, dan metode sensus berbasis register, kecuali...",
+    options:["Efisiensi biaya","Cara pengumpulan data","Basis data","Proses bisnis","Jadwal pelaksanaan"],
+    answer:4, explanation:"Ketiga metode sensus berbeda terutama dari sisi: <strong>efisiensi biaya</strong>, <strong>cara pengumpulan data</strong> (wawancara lapangan vs. register), <strong>basis data</strong> (lapangan vs. administratif), dan <strong>proses bisnis</strong> (alur kerja internal). <strong>Jadwal pelaksanaan</strong> tidak merupakan perbedaan mendasar antar ketiga metode sensus tersebut." },
+  // Q12
+  { q:"Kriteria tolak H0 untuk pengujian hipotesis rata-rata populasi satu arah sebelah kiri dengan tingkat signifikansi 5% adalah...",
+    options:["Hanya ketika statistik uji kurang dari nilai kritis -Z(0.05)","Hanya ketika statistik uji lebih besar dari nilai kritis Z(0.05)","Ketika statistik uji lebih kecil dari atau sama dengan nilai kritis Z(0.05)","Hanya ketika statistik uji kurang dari nilai kritis Z(0.05)","Ketika statistik uji kurang dari atau sama dengan nilai kritis Z(0.05)"],
+    answer:0, explanation:"Untuk uji satu arah kiri (H1: μ < μ0), tolak H0 jika Z_hitung < −Z(α). Dengan α = 0,05, nilai kritis = −1,645. H0 ditolak <strong>hanya ketika statistik uji < nilai kritis −Z(0,05)</strong>.",
+    formula:"Tolak H0 jika Z_hitung < −1,645 (α=0,05, satu arah kiri)" },
+  // Q13
+  { q:"Sebuah populasi dihasilkan dari hasil pelemparan sebuah dadu yang dilempar beberapa kali. Variabel acak X adalah merupakan sekumpulan kejadian kemunculan jumlah dot yang dihasilkan dari setiap pelemparan tersebut. Jika kita melemparkan dua dadu secara bersama-sama maka jumlah seluruh kemungkinan sampel yang dapat terjadi berjumlah...",
+    options:["6","12","64","24","36"],
+    answer:4, explanation:"Setiap dadu memiliki 6 kemungkinan hasil. Jika melempar dua dadu, total kemungkinan = 6 × 6 = <strong>36</strong>.",
+    formula:"S = 6 × 6 = 36" },
+  // Q14
+  { q:"Pada Analisis Linier Berganda, berikut ini kegunaan dari koefisien determinasi, kecuali...",
+    options:["Membandingkan kecocokan dua atau lebih persamaan regresi dengan jumlah variabel yang berbeda banyaknya","Mengetahui seberapa besar sumbangan pengaruh yang diberikan variabel bebas secara simultan terhadap variabel tidak bebas","Mengukur seberapa jauh kemampuan model dalam menerangkan variasi variabel tidak bebas","Mengukur seberapa besar kemampuan semua variabel bebas dalam menjelaskan varians dari variabel tidak bebas","Menunjukkan angka peningkatan ataupun penurunan variabel tidak bebas yang didasarkan pada variabel bebas"],
+    answer:4, explanation:"Yang BUKAN kegunaan R² adalah <strong>menunjukkan angka peningkatan/penurunan variabel dependen</strong>. Itu adalah fungsi koefisien regresi (slope b). R² hanya mengukur proporsi variasi Y yang dijelaskan model." },
+  // Q15
+  { q:"Manfaat yang diperoleh dari penggunaan cluster sampling dalam suatu survei adalah...",
+    options:["Meningkatkan reliabilitas sampel","Desain survei lebih efisien dibandingkan simple random sampling","Estimasi dapat dilakukan secara independen pada setiap klaster","Menurunkan biaya survei","Standard error yang dihasilkan kecil"],
+    answer:3, explanation:"Manfaat utama cluster sampling adalah <strong>menurunkan biaya survei</strong> karena elemen berkumpul secara geografis. Cluster sampling justru kurang efisien secara statistik (SE lebih besar, Deff > 1) dibanding SRS." },
+  // Q16
+  { q:"Data runtun waktu berikut mengandung pola... (grafik menunjukkan pola bergelombang dengan amplitudo semakin membesar dan nilai rata-rata meningkat seiring waktu)",
+    options:["Trend dan musiman (seasonal)","Musiman (seasonal)","Stasioner (horizontal)","Trend dan siklik","Trend"],
+    answer:0, explanation:"Grafik menunjukkan dua pola: (1) <strong>Tren meningkat</strong> — nilai rata-rata naik seiring waktu, dan (2) <strong>Pola musiman</strong> — fluktuasi berulang secara periodik. Kombinasi keduanya disebut pola <strong>trend dan musiman</strong>." },
+  // Q17
+  { q:"Beberapa pernyataan berikut ini adalah benar untuk Metode Analisis Linier Berganda, kecuali...",
+    options:["Memiliki asumsi tidak ada otokorelasi (nonautocorrelation)","Memiliki error term yang berdistribusi normal","Memiliki multikolinieritas yang sempurna antara variabel bebas yang digunakan","Memiliki asumsi homoskedasitas","Digunakan untuk mempelajari hubungan antara sebuah variabel tidak bebas dengan beberapa variabel bebas melalui suatu model statistik"],
+    answer:2, explanation:"Asumsi regresi linier berganda meliputi: tidak ada otokorelasi, normalitas error, homoskedasitas, dan <strong>tidak adanya multikolinieritas sempurna</strong>. Multikolinieritas sempurna justru melanggar asumsi sehingga koefisien tidak bisa diestimasi." },
+  // Q18
+  { q:"Pemilihan sampel elemen dalam klaster sampling dapat dilakukan dengan cara berikut ini, kecuali...",
+    options:["Semua elemen dalam klaster dipilih sebagai sampel","Simple random sampling","Cluster sampling","Systematic sampling","Sebagian elemen dalam klaster dipilih sebagai sampel"],
+    answer:2, explanation:"Setelah klaster terpilih, elemen dapat dipilih melalui: semua diambil, SRS, systematic sampling, atau sebagian saja. Yang TIDAK dilakukan adalah <strong>cluster sampling kembali dalam klaster</strong> — ini menjadi multistage sampling, bukan metode pemilihan elemen dalam klaster." },
+  // Q19
+  { q:"Beberapa pernyataan berikut ini adalah benar untuk Metode Analisis Linier Berganda, kecuali:",
+    options:["Memiliki asumsi homoskedasitas","Digunakan untuk mempelajari hubungan antara sebuah variabel tidak bebas dengan beberapa variabel bebas melalui suatu model statistik","Memiliki asumsi tidak ada otokorelasi (nonautocorrelation)","Memiliki error term yang berdistribusi normal","Memiliki multikolinieritas yang sempurna antara variabel bebas yang digunakan"],
+    answer:4, explanation:"Sama seperti Q17 dengan urutan berbeda. <strong>Multikolinieritas sempurna</strong> adalah PELANGGARAN asumsi, bukan asumsi yang dipenuhi. Asumsi regresi mengharuskan tidak ada multikolinieritas sempurna." },
+  // Q20
+  { q:"Statistik yang pemanfaatannya ditujukan untuk memenuhi kebutuhan internal dari suatu instansi/perusahaan swasta dalam rangka penyelenggaraan riset atau penelitian adalah...",
+    options:["Statistik pokok","Statistik dasar","Statistik sektoral","Statistik khusus","Statistik pemerintah"],
+    answer:3, explanation:"Menurut UU No. 16 Tahun 1997, <strong>Statistik Khusus</strong> adalah statistik yang pemanfaatannya untuk memenuhi kebutuhan spesifik dunia usaha, akademi, atau lembaga tertentu." },
+  // Q21
+  { q:"Misalkan populasi tinggi badan mahasiswa di suatu kampus berdistribusi normal dengan rata-rata 165 cm dan standar deviasi adalah 12. Berapa nilai Z jika dengan sampel sebanyak 36 mahasiswa diketahui rata-rata tinggi badan mahasiswa adalah 160 cm?",
+    options:["2,5","-0,4","-2,5","-15","0,4"],
+    answer:2, explanation:"Z = (x̄ − μ) / (σ/√n) = (160 − 165) / (12/6) = −5/2 = <strong>−2,5</strong>.",
+    formula:"Z = (160 − 165) / (12/√36) = −5/2 = −2,5" },
+  // Q22
+  { q:"Data tingkat kepuasan merupakan jenis data berskala ordinal karena...",
+    options:["Memiliki nilai interval","Memiliki tingkatan dan dapat dibedakan","Memiliki nilai nol mutlak","Memiliki nilai yang tidak dapat dibedakan","Memiliki nilai rata-rata"],
+    answer:1, explanation:"<strong>Skala ordinal</strong> memiliki dua karakteristik: dapat dibedakan dan memiliki <strong>tingkatan/urutan</strong> bermakna (puas > cukup puas > tidak puas). Namun jarak antar tingkatan tidak diketahui/tidak sama." },
+  // Q23
+  { q:"Suatu penelitian dilakukan untuk melihat ada tidaknya perbedaan kemampuan antara seorang teknisi dan seorang pilot, dilihat dari berbagai ukuran. Sampel: 20 teknisi dan 20 pilot, diberi tes: kecerdasan, ketekunan, pemahaman bentuk, dan kemampuan sensorik motorik. Analisis inferensia yang sesuai adalah...",
+    options:["Uji beda rata-rata dua sampel independent multivariate","Uji ANOVA","Uji beda rata-rata dua sampel independent univariate","Uji beda rata-rata sampel berpasangan multivariate","Uji beda rata-rata sampel berpasangan univariate"],
+    answer:0, explanation:"Dua kelompok berbeda (teknisi vs. pilot) → <strong>independen</strong>. Beberapa tes diukur (4 variabel dependen) → <strong>multivariate</strong>. Sehingga uji yang tepat adalah <strong>Uji Beda Rata-rata Dua Sampel Independent Multivariate (Hotelling's T²/MANOVA)</strong>." },
+  // Q24 — DIKOREKSI: answer D (index 3)
+  { q:"Kuartil bawah dari data: 5, 7, 8, 8, 7, 5, 7, 7, 8 adalah...",
+    options:["5,5","6,5","7","6","5"],
+    answer:3, explanation:"Data diurutkan: 5, 5, 7, 7, 7, 7, 8, 8, 8 (n=9). Posisi Q1 = (n+1)/4 = 10/4 = 2,5. Nilai ke-2 = 5, nilai ke-3 = 7. Q1 = (5+7)/2 = <strong>6</strong>.",
+    formula:"Posisi Q1 = (9+1)/4 = 2,5 → Q1 = (nilai ke-2 + nilai ke-3)/2 = (5+7)/2 = 6" },
+  // Q25
+  { q:"Jika diketahui proporsi sampel balita yang terindikasi stunting adalah 0,3 dari 2100 sampel balita di provinsi DKI Jakarta maka batas bawah dan batas atas selang kepercayaan estimasi proporsi balita yang terindikasi stunting dengan tingkat kepercayaan 90% adalah...",
+    options:["0,3 ± Z(0,10)(0,0001)","0,3 ± Z(0,025)(0,0001)","0,3 ± Z(0,10)(0,01)","0,3 ± Z(0,05)(0,0001)","0,3 ± Z(0,05)(0,01)"],
+    answer:4, explanation:"CI 90% → α=0,10 → α/2=0,05 → Z(0,05). SE = √(0,3×0,7/2100) = √(0,0001) = 0,01. Interval = <strong>0,3 ± Z(0,05)(0,01)</strong>.",
+    formula:"SE = √(p̂(1-p̂)/n) = √(0,3×0,7/2100) = 0,01" },
+  // Q26
+  { q:"Salah satu alat uji untuk menguji asumsi autokorelasi adalah...",
+    options:["Spearmen Test","Durbin-Watson statistic","F Test","Haussman Test","Mc Nemar Statistic"],
+    answer:1, explanation:"<strong>Durbin-Watson statistic</strong> adalah uji paling umum untuk mendeteksi autokorelasi residual. Nilai DW berkisar 0–4; nilai ≈ 2 berarti tidak ada autokorelasi.",
+    formula:"d = Σ(eₜ−eₜ₋₁)² / Σeₜ²,  ideal d ≈ 2" },
+  // Q27
+  { q:"Hal yang membedakan nonprobability sampling dari probability sampling adalah?",
+    options:["Peluang terpilih adalah sama untuk seluruh unit sampel.","Peluang terpilih menjadi sampel diketahui dan nilainya tidak sama dengan nol.","Peluang terpilih adalah proporsional terhadap ukuran dasar penarikan sampel.","Peluang terpilih sebagai sampel tidak diketahui besarnya.","Peluang terpilih berbanding terbalik dengan jumlah unit dalam populasi."],
+    answer:3, explanation:"Perbedaan mendasar: dalam <strong>nonprobability sampling</strong>, peluang terpilih setiap unit <strong>tidak diketahui</strong>. Dalam probability sampling, peluang terpilih diketahui dan > 0." },
+  // Q28
+  { q:"Dua lembaga penelitian survei proporsi Tidak Setuju. Lembaga 1: n=100, 60 menyatakan Setuju. Lembaga 2: n=200, 120 menyatakan Setuju. Dengan tingkat kepercayaan yang sama, pernyataan benar tentang hasil interval estimasi adalah...",
+    options:["Survei kedua lembaga menghasilkan nilai margin of error yang sama","Survei kedua lembaga menghasilkan lebar perkiraan interval yang sama","Hasil survei lembaga penelitian kedua memiliki perkiraan interval yang lebih lebar","Hasil survei lembaga penelitian kedua memiliki margin of error yang lebih kecil","Hasil survei lembaga penelitian pertama memiliki perkiraan interval yang lebih lebar"],
+    answer:3, explanation:"Proporsi Setuju sama (60%). SE₁ = √(0,6×0,4/100) = 0,049; SE₂ = √(0,6×0,4/200) = 0,035. Karena n₂ > n₁, MoE lembaga 2 lebih <strong>kecil</strong>.",
+    formula:"SE = √(p(1-p)/n) → n makin besar, SE makin kecil" },
+  // Q29 — DIKOREKSI: answer D (index 3) = parabolik
+  { q:"Bentuk umum Y' = a + bX + cX² adalah persamaan...",
+    options:["Persamaan trend logaritmik","Persamaan trend eksponensial","Persamaan trend polinomial","Persamaan trend parabolik","Persamaan trend geometrik"],
+    answer:3, explanation:"Y' = a + bX + cX² adalah bentuk <strong>persamaan trend parabolik</strong> (kuadratik). Bentuk ini menghasilkan kurva berbentuk parabola. Trend logaritmik: a + b·ln(X); eksponensial/geometrik: a·bˣ." },
+  // Q30 — DIKOREKSI: answer A (index 0)
+  { q:"Ada tiga hal penting yang perlu dipahami oleh enumerator dalam melaksanakan wawancara yaitu...",
+    options:["Pemakaian bahasa yang mudah dipahami, kepekaan enumerator membaca situasi responden dan lingkungannya, dan kesantunan wawancara.","Memperkenalkan diri, menjelaskan maksud pendataan, dan mengajukan pertanyaan.","Menguasai jalannya wawancara, bertanya tidak bertele-tele, dan menggunakan bahasa yang mudah dipahami.","Penggunaan bahasa yang baik dan benar, mampu mengetahui kondisi responden, dan menjaga kerahasiaan informasi responden.","Penyampaian maksud dan substansi pendataan, menjaga kerahasiaan informasi responden, dan teknik menguasai wawancara."],
+    answer:0, explanation:"Tiga hal penting yang harus dipahami enumerator dalam wawancara adalah: (1) <strong>Pemakaian bahasa yang mudah dipahami</strong>, (2) <strong>Kepekaan membaca situasi responden dan lingkungannya</strong>, dan (3) <strong>Kesantunan dalam wawancara</strong>. Ketiganya merupakan keterampilan lunak (soft skill) yang esensial bagi enumerator." },
+  // Q31 — DIKOREKSI: answer E (index 4)
+  { q:"Ingin diketahui apakah cara meracik Rawon dengan metode baru berhubungan terhadap kualitas rasa Rawon yang menggunakan metode lama. Bagaimana design pengukuran yang dapat dilakukan untuk mengetahui hubungan tersebut?",
+    options:["Kualitas rawon diukur dengan sering dan tidak sering dipesan","Kualitas rawon dibedakan atas metode baru dan metode lama","Kualitas rawon yang akan diukur dapat menggunakan skala pengukuran ordinal dari tidak suka sampai sangat suka","Kualitas rawon dibedakan atas rasa enak dan tidak enak","Dilakukan perbedaan dua kelompok antara metode kemudian ditanyakan pada masing-masing kelompok menurut tingkatan kualitas rawon"],
+    answer:4, explanation:"Design pengukuran yang paling tepat adalah <strong>membandingkan dua kelompok (metode baru vs. metode lama) kemudian mengukur penilaian kualitas rawon dari setiap kelompok berdasarkan tingkatan</strong>. Dengan demikian perbandingan langsung antar metode dapat dilakukan secara terstruktur." },
+  // Q32
+  { q:"Statistik yang pemanfaatannya ditujukan untuk keperluan yang bersifat luas, baik pemerintah maupun masyarakat, yang memiliki ciri-ciri lintas sektoral, berskala nasional maupun regional, makro, dan yang penyelenggaraannya menjadi tanggung jawab BPS adalah...",
+    options:["Statistik dasar","Statistik pemerintah","Statistik sektoral","Statistik khusus","Statistik pokok"],
+    answer:0, explanation:"Berdasarkan UU No. 16 Tahun 1997, <strong>Statistik Dasar</strong> berciri lintas sektoral, berskala nasional/regional, makro, dan menjadi tanggung jawab BPS. Contoh: Sensus Penduduk, Susenas, Sakernas." },
+  // Q33
+  { q:"Objek berikut dapat diteliti dengan observasi, kecuali...",
+    options:["Kegiatan rapat.","Persepsi individu","Proses kerja.","Gejala alam.","Perilaku manusia."],
+    answer:1, explanation:"<strong>Persepsi individu</strong> terjadi di dalam benak seseorang dan tidak dapat diamati langsung dari luar. Observasi efektif untuk: kegiatan rapat, proses kerja, gejala alam, perilaku manusia. Persepsi memerlukan wawancara atau kuesioner." },
+  // Q34
+  { q:"Karakteristik yang semakin heterogen di dalam suatu klaster ditunjukkan dengan angka intraclass correlation coefficient yang...",
+    options:["Kecil","Sama dengan satu","Sama dengan nol","Besar","Bernilai positif"],
+    answer:0, explanation:"<strong>ICC</strong> mendekati 1 = sangat homogen dalam klaster; ICC mendekati 0 = sangat heterogen. Jika elemen makin <strong>heterogen</strong>, ICC makin <strong>kecil</strong>.",
+    formula:"ICC ≈ 0 → heterogen; ICC ≈ 1 → homogen" },
+  // Q35
+  { q:"Tipe alokasi sampel di mana jumlah sampel yang dialokasikan ke setiap strata sebanding dengan jumlah populasi pada setiap strata adalah...",
+    options:["Alokasi sama","Alokasi optimum","Alokasi sembarang","Alokasi Neyman","Alokasi proporsional"],
+    answer:4, explanation:"<strong>Alokasi proporsional</strong>: nᵢ = n × (Nᵢ/N). Alokasi Neyman/optimum memperhitungkan pula standar deviasi strata. Alokasi sama membagi n merata ke setiap strata.",
+    formula:"nᵢ = n × (Nᵢ / N)" },
+  // Q36
+  { q:"Dari beberapa uji statistik nonparametrik di bawah ini, uji manakah yang tidak mengandalkan penghitungan rank?",
+    options:["Kendal Tau.","Exact Fisher.","Spearman's Rho.","Wilcoxon.","Mann Whitney."],
+    answer:1, explanation:"<strong>Exact Fisher (Fisher's Exact Test)</strong> bekerja berdasarkan distribusi hipergeometrik dan frekuensi sel, <strong>bukan rank</strong>. Kendall Tau, Spearman's Rho, Wilcoxon, dan Mann-Whitney semuanya menggunakan pengurutan data." },
+  // Q37
+  { q:"Statistik yang pemanfaatannya ditujukan untuk memenuhi kebutuhan instansi tertentu dalam rangka penyelenggaraan tugas-tugas pemerintahan dan pembangunan yang merupakan tugas pokok instansi yang bersangkutan adalah...",
+    options:["Statistik khusus","Statistik pemerintah","Statistik sektoral","Statistik pokok","Statistik dasar"],
+    answer:2, explanation:"Berdasarkan UU No. 16 Tahun 1997, <strong>Statistik Sektoral</strong> ditujukan untuk kebutuhan instansi tertentu dalam rangka tugas pemerintahan/pembangunan. Contoh: statistik kesehatan (Kemenkes), statistik pendidikan (Kemendikbud)." },
+  // Q38
+  { q:"Kontribusi besarnya perubahan nilai variabel bebas terhadap variabel terikat dimana jika nilainya semakin besar maka kontribusi perubahan akan semakin besar disebut...",
+    options:["Intersep","Koefisien Regresi","Error","Variabel Terikat","Variabel Bebas"],
+    answer:1, explanation:"<strong>Koefisien Regresi (slope/b)</strong> menunjukkan besarnya perubahan Y untuk setiap satu satuan perubahan X. Semakin besar nilai b, semakin besar kontribusi perubahan.",
+    formula:"Y = a + bX → b = koefisien regresi (slope)" },
+  // Q39
+  { q:"Berikut adalah alasan penggunaan cluster sampling, kecuali...",
+    options:["Memudahkan operasional lapangan","Biaya transportasi menjadi lebih murah","Mendapatkan sampel yang heterogen","Kesulitan dalam penyediaan kerangka sampel sampai ke elemen","Lokasi sampel terpilih tidak terlalu menyebar secara geografis"],
+    answer:2, explanation:"Cluster sampling dipilih karena: mudah operasional, biaya murah, tidak ada sampling frame elemen, lokasi tidak tersebar. Yang BUKAN alasannya adalah <strong>mendapatkan sampel yang heterogen</strong> — klaster biasanya homogen di dalamnya, sehingga cluster sampling kurang efisien secara statistik." },
+  // Q40
+  { q:"Pada Analisis Linier Berganda, berikut ini kegunaan dari koefisien determinasi (R2), kecuali:",
+    options:["Membandingkan kecocokan dua atau lebih persamaan regresi dengan jumlah variabel yang berbeda banyaknya","Mengetahui seberapa besar sumbangan pengaruh yang diberikan variabel bebas secara simultan terhadap variabel tidak bebas","Menunjukkan angka peningkatan ataupun penurunan variabel tidak bebas yang didasarkan pada variabel bebas","Mengukur seberapa jauh kemampuan model dalam menerangkan variasi variabel tidak bebas.","Mengukur seberapa besar kemampuan semua variabel bebas dalam menjelaskan varians dari variabel tidak bebas"],
+    answer:2, explanation:"Yang BUKAN kegunaan R² adalah <strong>menunjukkan angka peningkatan/penurunan Y berdasarkan X</strong> — itu fungsi koefisien regresi (slope b). R² mengukur proporsi variasi Y yang dijelaskan model." },
+  // Q41
+  { q:"Dari persamaan berikut, yang termasuk variabel endogen adalah: Ct = β₀ + β₁Yₜ + uₜ dan Yₜ = Cₜ + Iₜ",
+    options:["It","It dan Yt","Yt dan ut","Ct dan It","Ct dan Yt"],
+    answer:4, explanation:"Variabel <strong>endogen</strong> adalah variabel yang ditentukan dalam sistem persamaan (sisi kiri). Cₜ ditentukan oleh persamaan 1 dan Yₜ ditentukan oleh persamaan 2 → keduanya endogen. Iₜ adalah eksogen, uₜ adalah error." },
+  // Q42 — opsi E dikoreksi menjadi 3,182
+  { q:"Panjang setengah selang kepercayaan 95% bagi rata-rata satu populasi dengan rata-rata contoh 3, ragam contoh 4, ukuran contoh 4, nilai t0.025 = 3,182 dan nilai Z0,025 = 1,96, adalah...",
+    options:["7,96","3,92","1,96","9,182","3,182"],
+    answer:4, explanation:"Setengah lebar CI = t(α/2; n−1) × s/√n. s = √4 = 2, n = 4, √n = 2, t = 3,182. Setengah lebar = 3,182 × (2/2) = 3,182 × 1 = <strong>3,182</strong>.",
+    formula:"Setengah CI = t(0.025;3) × s/√n = 3,182 × 2/2 = 3,182" },
+  // Q43
+  { q:"Berdasarkan gambar ACF yang 'cuts off' setelah lag 1 dan PACF yang 'tails off', model ARIMA tentatif yang sesuai adalah...",
+    options:["ARIMA(0,0,1)","ARIMA(0,1,1)","ARIMA(1,0,0)","ARIMA(1,1,1)","ARIMA(1,0,1)"],
+    answer:0, explanation:"ACF cuts off setelah lag ke-q dan PACF tails off → komponen MA(q). ACF cuts off lag 1 + PACF tails off → <strong>MA(1) = ARIMA(0,0,1)</strong>.",
+    formula:"ACF cuts off lag 1 + PACF tails off → ARIMA(0,0,1)" },
+  // Q44
+  { q:"Berikut ini pernyataan yang benar tentang stratified sampling adalah...",
+    options:["Merupakan metode nonprobability sampling","Pembentukan strata dilakukan sebelum pengambilan sampel","Overlapping antarstrata akan meningkatkan presisi hasil estimasi","Presisinya kurang baik dibandingkan dengan cluster sampling","Sampel terpilih di suatu strata akan mempengaruhi sampel terpilih di strata lainnya"],
+    answer:1, explanation:"Stratified sampling: (1) probability sampling, (2) strata dibentuk <strong>sebelum</strong> penarikan sampel, (3) strata bersifat mutually exclusive (tidak overlapping), (4) sampel antar strata dipilih independen, (5) umumnya lebih presisi dari cluster sampling." },
+  // Q45 — DIKOREKSI: Lampung ada 11 pelanggan, answer C (index 2)
+  { q:"Seorang pemilik toko survei kepuasan di dua cabang. Cabang Palembang: 13 pelanggan, 3 menyatakan puas. Cabang Lampung: 11 pelanggan, 3 menyatakan puas. Dari data tersebut dapat disimpulkan...",
+    options:["Jumlah pelanggan cabang Palembang yang merasakan puas lebih sedikit dibandingkan cabang Lampung","Tidak terdapat perbedaan proporsi kepuasan antara cabang Palembang dengan cabang Lampung","Terdapat perbedaan proporsi tingkat kepuasan antara pelanggan cabang Palembang dengan cabang Lampung","Jumlah pelanggan cabang Palembang lebih banyak yang merasakan tidak puas dibandingkan cabang Lampung","Jumlah pelanggan tidak puas cabang Palembang mendekati jumlah pelanggan tidak puas cabang Lampung"],
+    answer:2, explanation:"Proporsi puas Palembang = 3/13 ≈ 23,1%. Proporsi puas Lampung = 3/11 ≈ 27,3%. Kedua proporsi berbeda, sehingga dapat disimpulkan <strong>terdapat perbedaan proporsi tingkat kepuasan</strong> antara kedua cabang.",
+    formula:"Palembang: 3/13 ≈ 23,1% vs Lampung: 3/11 ≈ 27,3% → berbeda" },
+  // Q46
+  { q:"Bagaimana mengelola data administrasi yang ada untuk menghasilkan statistik yang bermanfaat untuk pengambilan keputusan?",
+    options:["Data administrasi yang ada bisa diolah dan dianalisis untuk menghasilkan kesimpulan yang diinginkan.","Data administrasi yang ada bisa disajikan dalam apa adanya tanpa adanya rekayasa.","Data administrasi yang ada bisa disajikan dalam format tabel dan grafik yang menarik.","Data administrasi yang ada bisa diolah oleh pihak-pihak yang dibayar untuk mengambil keputusan.","Data administrasi yang ada bisa dikumpulkan, diolah, dianalisis, dan disajikan sesuai kebutuhan."],
+    answer:4, explanation:"Pengelolaan data administrasi yang baik mengikuti alur: <strong>dikumpulkan → diolah → dianalisis → disajikan</strong> sesuai kebutuhan pengguna untuk pengambilan keputusan." },
+  // Q47
+  { q:"Dibawah ini yang bukan merupakan salah satu asumsi yang diperlukan dalam One Way ANOVA adalah...",
+    options:["Nilai perbandingan kedua varian mendekati angka satu","Komponen-komponen modelnya bersifat aditif","Data dari setiap kelompok yang akan diuji berdistribusi normal","Varian antar kelompok harus homogen","Sampel berasal dari kelompok yang independen"],
+    answer:0, explanation:"Asumsi One-Way ANOVA: normalitas, homogenitas varians, independensi sampel, model aditif. <strong>Nilai perbandingan dua varian mendekati satu</strong> bukan asumsi ANOVA — itu terkait uji F dua varians, bukan asumsi dasar ANOVA." },
+  // Q48
+  { q:"Penarikan sampel yang tidak menggunakan prinsip probabilitas, misal sampel dipilih berdasarkan kriteria tertentu sesuai maksud dan tujuan penelitian, disebut...",
+    options:["Non-probability sampling","Systematic sampling","Probability sampling","Simple random sampling","Quota sampling"],
+    answer:0, explanation:"<strong>Non-probability sampling</strong> adalah teknik di mana peluang terpilih tidak diketahui dan pemilihan berdasarkan pertimbangan peneliti. Jenis: purposive, quota, snowball, convenience." },
+  // Q49
+  { q:"Adanya sistematik error dalam residual yang berasal dari nilai estimasi dari dependen variabel yang berkorelasi dari observasi ke observasi lainnya, disebut...",
+    options:["Homoskedastisitas","Goodness of Fit","Linearitas","Multikolinearitas","Autokorelasi"],
+    answer:4, explanation:"<strong>Autokorelasi</strong>: residual dari model regresi berkorelasi satu sama lain antar observasi. Sering terjadi pada data time series. Dideteksi dengan uji Durbin-Watson.",
+    formula:"E(εₜ·εₜ₋₁) ≠ 0 → autokorelasi" },
+  // Q50
+  { q:"Mengapa data administrasi perlu dikompilasi?",
+    options:["Agar seluruh data administrasi dapat tersedia setiap waktu.","Agar dapat menghasilkan data administrasi yang lengkap.","Agar dapat memudahkan perumusan kebijakan pemerintah.","Agar hubungan antar lembaga pemerintah dapat terjalin dengan baik.","Agar anggaran pemerintah dapat terserap secara efisien."],
+    answer:1, explanation:"Kompilasi data administrasi bertujuan untuk <strong>menghasilkan data yang lengkap</strong> dengan mengumpulkan dan menggabungkan data dari berbagai sumber/unit administrasi yang berbeda." }
+];
+
+const extraQuestions = [
+  { q:"Dalam statistika, apa yang dimaksud dengan 'parameter'?", options:["Nilai yang dihitung dari data sampel","Nilai yang menggambarkan karakteristik populasi","Batas atas dan bawah selang kepercayaan","Ukuran variabilitas data","Nilai rata-rata dari distribusi sampel"], answer:1, explanation:"<strong>Parameter</strong> adalah nilai numerik yang menggambarkan karakteristik populasi, misalnya μ dan σ. Nilai dari sampel disebut <strong>statistik</strong> (x̄ dan s)." },
+  { q:"Pada uji chi-square untuk tabel kontingensi r × c, derajat bebas yang digunakan adalah...", options:["r × c","(r-1)(c-1)","r + c - 1","r × c - 1","(r+1)(c+1)"], answer:1, explanation:"Derajat bebas uji chi-square untuk tabel r × c adalah <strong>(r−1)(c−1)</strong>.", formula:"df = (r−1)(c−1)" },
+  { q:"Apa yang dimaksud dengan 'Type I Error' dalam pengujian hipotesis?", options:["Menolak H1 ketika H1 benar","Gagal menolak H0 ketika H0 salah","Menolak H0 ketika H0 sebenarnya benar","Menolak H0 ketika H0 salah","Menerima H1 ketika H1 salah"], answer:2, explanation:"<strong>Type I Error</strong> adalah menolak H0 ketika sebenarnya H0 benar (false positive). Probabilitas = α (tingkat signifikansi). Type II Error = gagal menolak H0 ketika H0 salah, probabilitas = β." },
+  { q:"Distribusi yang digunakan untuk menguji hipotesis tentang varians satu populasi adalah...", options:["Distribusi normal","Distribusi t","Distribusi F","Distribusi chi-square","Distribusi binomial"], answer:3, explanation:"<strong>Distribusi chi-square (χ²)</strong> digunakan untuk uji hipotesis varians satu populasi: χ² = (n−1)s²/σ₀².", formula:"χ² = (n−1)s² / σ₀²" },
+  { q:"Koefisien korelasi Pearson mengukur...", options:["Kekuatan hubungan linear antara dua variabel kuantitatif","Hubungan kausalitas antara variabel X dan Y","Perbedaan rata-rata antara dua kelompok","Proporsi variasi Y yang dijelaskan oleh X","Derajat kebebasan dalam model regresi"], answer:0, explanation:"<strong>Koefisien korelasi Pearson (r)</strong> mengukur kekuatan dan arah hubungan LINEAR dua variabel kuantitatif. Nilai r berkisar −1 hingga +1. Korelasi ≠ kausalitas!" },
+  { q:"Dalam metode systematic sampling dengan interval k, cara menentukan elemen pertama yang dipilih adalah...", options:["Selalu elemen pertama dalam populasi","Dipilih secara acak dari 1 sampai k","Elemen dengan nilai terbesar","Elemen yang paling representatif","Dipilih berdasarkan pertimbangan peneliti"], answer:1, explanation:"Dalam <strong>systematic sampling</strong>, elemen pertama dipilih <strong>secara acak dari angka 1 sampai k</strong>. Berikutnya dipilih dengan menambahkan k secara berulang.", formula:"Interval k = N/n; elemen pertama = acak dari [1,k]" },
+  { q:"Uji Kolmogorov-Smirnov digunakan untuk menguji...", options:["Kesamaan dua rata-rata populasi","Normalitas distribusi data","Kesamaan dua proporsi populasi","Homogenitas varians","Independensi dua variabel kategorik"], answer:1, explanation:"<strong>Uji Kolmogorov-Smirnov</strong> adalah uji nonparametrik untuk menguji apakah data mengikuti distribusi tertentu (biasanya normalitas). Membandingkan fungsi distribusi kumulatif empiris dengan distribusi teoritis." },
+  { q:"Apa yang dimaksud dengan 'heteroskedastisitas' dalam analisis regresi?", options:["Varians error yang konstan di semua observasi","Adanya korelasi antar variabel independen","Varians error yang berbeda-beda di setiap observasi","Distribusi error yang tidak normal","Adanya korelasi antar residual"], answer:2, explanation:"<strong>Heteroskedastisitas</strong>: varians residual tidak konstan untuk berbagai nilai variabel independen. Melanggar asumsi homoskedastisitas OLS. Diuji dengan Breusch-Pagan, White Test, atau Glejser Test." },
+  { q:"Dalam analisis regresi sederhana Y = a + bX, interpretasi koefisien b adalah...", options:["Nilai Y ketika X = 0","Nilai X ketika Y = 0","Perubahan rata-rata Y untuk setiap satu satuan kenaikan X","Korelasi antara X dan Y","Proporsi variasi Y yang dijelaskan oleh X"], answer:2, explanation:"Koefisien b (slope): <strong>rata-rata perubahan Y untuk setiap kenaikan satu satuan X</strong>. Nilai a (intersep) adalah nilai Y ketika X = 0.", formula:"b = ΔȲ/ΔX" },
+  { q:"Metode pengambilan sampel paling tepat ketika tidak tersedia kerangka sampel yang lengkap adalah...", options:["Simple random sampling","Stratified sampling","Cluster sampling","Systematic sampling","Quota sampling"], answer:2, explanation:"<strong>Cluster sampling</strong> hanya memerlukan daftar klaster, bukan daftar semua elemen. Setelah klaster terpilih, baru dibuat kerangka untuk klaster tersebut." },
+  { q:"Nilai standar deviasi dari data: 2, 4, 4, 4, 5, 5, 7, 9 adalah...", options:["2","4","2,5","3","1,5"], answer:0, explanation:"x̄ = 40/8 = 5. Varians = [(9+1+1+1+0+0+4+16)/8] = 32/8 = 4. SD = √4 = <strong>2</strong>.", formula:"s = √[Σ(xᵢ−x̄)²/n] = √4 = 2" },
+  { q:"Sebuah distribusi memiliki mean=70, median=75, modus=80. Distribusi ini dikatakan...", options:["Simetris","Miring ke kanan (positive skew)","Miring ke kiri (negative skew)","Bimodal","Leptokurtik"], answer:2, explanation:"Distribusi <strong>miring ke kiri (negative skew)</strong>: Modus > Median > Mean. Kasus ini: 80 > 75 > 70. Ekor distribusi memanjang ke arah nilai rendah (kiri)." },
+  { q:"Pada uji Mann-Whitney, hipotesis yang diuji adalah...", options:["Kesamaan dua rata-rata populasi berdistribusi normal","Kesamaan dua distribusi populasi (atau median)","Kesamaan dua proporsi populasi","Independensi dua variabel kategorik","Kesamaan varians dua populasi"], answer:1, explanation:"<strong>Uji Mann-Whitney</strong> adalah uji nonparametrik untuk apakah dua kelompok independen berasal dari populasi yang sama (atau memiliki median yang sama). Alternatif nonparametrik dari uji t dua sampel independen." },
+  { q:"Dalam peramalan deret waktu, komponen IRREGULAR adalah...", options:["Pola jangka panjang kenaikan atau penurunan","Fluktuasi berulang dengan periode kurang dari satu tahun","Fluktuasi tidak beraturan yang tidak dapat diprediksi","Fluktuasi dengan siklus lebih dari satu tahun","Perubahan yang disebabkan oleh faktor musim"], answer:2, explanation:"Komponen deret waktu: Trend, Seasonal, Siklik, dan <strong>Irregular</strong> (fluktuasi acak dan tidak dapat diprediksi oleh komponen lainnya)." },
+  { q:"Titik estimasi (point estimate) untuk proporsi populasi adalah...", options:["Proporsi sampel (p̂)","Proporsi populasi (P)","Z-score dari proporsi sampel","Mean dari semua sampel","Median populasi"], answer:0, explanation:"<strong>Proporsi sampel (p̂ = x/n)</strong> adalah titik estimasi untuk proporsi populasi P.", formula:"p̂ = x/n" },
+  { q:"Metode BLUE (Best Linear Unbiased Estimator) berkaitan dengan...", options:["Estimasi parameter regresi yang memiliki varians terkecil di antara semua estimator linear tak bias","Metode bootstrapping dalam statistika","Estimasi bayesian untuk model linear","Metode machine learning dalam statistika","Estimasi parameter dengan likelihood maksimum"], answer:0, explanation:"<strong>BLUE</strong> dari Teorema Gauss-Markov: estimator OLS memiliki varians terkecil di antara semua estimator linear tak bias, jika semua asumsi OLS terpenuhi." },
+  { q:"Dalam konteks BPS, sensus yang diselenggarakan BPS yang mencakup data penduduk beserta kondisi perumahan yang dihuni adalah...", options:["Sensus Penduduk","Sensus Pertanian","Sensus Ekonomi","Sensus Bangunan","Survei Sosial Ekonomi Nasional (Susenas)"], answer:0, explanation:"<strong>Sensus Penduduk</strong> mencakup data penduduk beserta kondisi perumahan/bangunan yang dihuni. Sensus Pertanian mencakup usaha pertanian, Sensus Ekonomi untuk usaha non-pertanian." },
+  { q:"Pada distribusi normal standar, persentase data yang berada dalam rentang μ ± 2σ adalah...", options:["68,27%","95,45%","99,73%","90%","75%"], answer:1, explanation:"Aturan empiris: μ±1σ = 68,27%, μ±2σ = <strong>95,45%</strong>, μ±3σ = 99,73%.", formula:"P(μ−2σ ≤ X ≤ μ+2σ) = 95,45%" },
+  { q:"Adjusted R-squared berbeda dari R-squared biasa karena...", options:["Selalu lebih besar dari R-squared","Mempertimbangkan jumlah variabel bebas dalam model","Menggunakan logaritma natural","Berlaku hanya untuk regresi sederhana","Mengukur korelasi bukan variasi"], answer:1, explanation:"<strong>Adjusted R²</strong> memperhitungkan jumlah variabel bebas dan ukuran sampel. R² biasa selalu naik saat variabel baru ditambahkan; Adjusted R² dapat turun jika variabel baru tidak meningkatkan model.",
+    formula:"R²_adj = 1 − [(1−R²)(n−1)/(n−k−1)]" },
+  { q:"Pengujian apakah semua koefisien regresi secara simultan sama dengan nol dalam regresi berganda menggunakan statistik uji...", options:["t-statistic","F-statistic","Chi-square","Z-statistic","Durbin-Watson"], answer:1, explanation:"<strong>Uji F</strong> untuk menguji β₁=β₂=...=βₖ=0 secara simultan. Uji t untuk koefisien individual.",
+    formula:"F = (R²/k) / [(1−R²)/(n−k−1)] ~ F(k, n−k−1)" },
+  { q:"Transformasi Box-Cox dalam analisis regresi terutama digunakan untuk mengatasi masalah...", options:["Multikolinieritas","Autokorelasi","Heteroskedastisitas dan non-normalitas residual","Overfitting model","Endogenitas variabel"], answer:2, explanation:"<strong>Transformasi Box-Cox</strong> (Y^λ) digunakan untuk menstabilkan varians dan mendekatkan distribusi residual ke normalitas. Mengatasi <strong>heteroskedastisitas dan non-normalitas</strong>.",
+    formula:"Y(λ) = (Y^λ−1)/λ, λ≠0; ln(Y), λ=0" },
+  { q:"Dalam stratified sampling, presisi estimasi akan meningkat jika...", options:["Ukuran setiap strata sama","Elemen dalam setiap strata semakin heterogen","Elemen dalam setiap strata semakin homogen (varians dalam strata kecil)","Jumlah strata semakin sedikit","Penarikan sampel dalam strata dilakukan secara tidak acak"], answer:2, explanation:"Stratified sampling paling efisien ketika strata <strong>homogen di dalam</strong> dan heterogen antar strata. Semakin homogen dalam strata, semakin kecil standar error estimasi." },
+  { q:"Data: 60, 70, 70, 75, 80, 85, 90, 90, 95, 100. Nilai median adalah...", options:["80","82,5","80,5","85","77,5"], answer:1, explanation:"n=10 (genap). Median = rata-rata nilai ke-5 dan ke-6 = (80+85)/2 = <strong>82,5</strong>.",
+    formula:"Median = (80+85)/2 = 82,5" },
+  { q:"Central Limit Theorem menyatakan bahwa...", options:["Semua populasi mengikuti distribusi normal","Distribusi sampling rata-rata akan mendekati normal jika ukuran sampel cukup besar, terlepas dari bentuk distribusi populasinya","Rata-rata populasi sama dengan rata-rata sampel","Varians sampel selalu lebih kecil dari varians populasi","Distribusi t selalu mendekati distribusi normal"], answer:1, explanation:"<strong>Central Limit Theorem</strong>: distribusi sampling rata-rata mendekati normal jika n cukup besar (≥30), terlepas dari distribusi populasi aslinya.",
+    formula:"x̄ ~ N(μ, σ²/n) untuk n besar" },
+  { q:"Uji Wilcoxon Signed-Rank digunakan sebagai alternatif nonparametrik dari...", options:["Uji F satu arah","Uji t dua sampel independen","Uji t satu sampel atau sampel berpasangan","Uji chi-square","Uji korelasi Pearson"], answer:2, explanation:"<strong>Uji Wilcoxon Signed-Rank</strong> adalah alternatif nonparametrik dari <strong>uji t satu sampel atau uji t sampel berpasangan</strong>. Untuk dua sampel independen, alternatifnya adalah Mann-Whitney." },
+  { q:"Apa yang dimaksud dengan 'sampling error' dalam survei statistik?", options:["Kesalahan yang terjadi karena alat ukur yang tidak tepat","Kesalahan sistematis akibat bias peneliti","Perbedaan antara nilai statistik sampel dan parameter populasi karena hanya sebagian populasi yang diamati","Kesalahan dalam pengkodean data","Kesalahan yang tidak dapat dikurangi"], answer:2, explanation:"<strong>Sampling error</strong>: perbedaan antara statistik sampel dan parameter populasi akibat hanya sebagian populasi diamati. Dapat dikurangi dengan memperbesar ukuran sampel. Berbeda dengan non-sampling error.",
+    formula:"Sampling error = x̄ − μ" },
+  { q:"Dalam regresi logistik, variabel dependen yang digunakan adalah...", options:["Variabel kontinu","Variabel kategorik (biasanya biner: 0 atau 1)","Variabel ordinal dengan banyak kategori","Variabel rasio","Variabel interval"], answer:1, explanation:"<strong>Regresi logistik</strong> digunakan ketika variabel dependen bersifat <strong>kategorik biner (0/1)</strong>, misalnya lulus/tidak lulus. Model menggunakan fungsi logit untuk memodelkan probabilitas." },
+  { q:"Metode yang digunakan BPS dalam Sensus Penduduk 2020 yang memanfaatkan data registrasi kependudukan adalah...", options:["Sensus tradisional door-to-door","Sensus berbasis register saja","Sensus kombinasi (combined method)","Multistage random sampling","Administrative record matching"], answer:2, explanation:"BPS menggunakan <strong>sensus kombinasi (combined census)</strong> dalam SP2020: memadukan data register Dukcapil sebagai basis, lalu diverifikasi melalui pendataan lapangan." },
+  { q:"Skala pengukuran yang memiliki titik nol yang bersifat mutlak (absolut) adalah...", options:["Nominal","Ordinal","Interval","Rasio","Kategorik"], answer:3, explanation:"<strong>Skala Rasio</strong> memiliki titik nol mutlak yang bermakna. Contoh: berat badan, tinggi badan, pendapatan. 0 kg berarti benar-benar tidak ada berat. Berbeda dengan skala interval (nol arbitrer, seperti suhu Celsius)." },
+  { q:"Dalam analisis regresi, multikolinieritas dapat dideteksi menggunakan...", options:["Uji Durbin-Watson","Uji Breusch-Pagan","Variance Inflation Factor (VIF)","Uji Shapiro-Wilk","Uji Levene"], answer:2, explanation:"<strong>Variance Inflation Factor (VIF)</strong> adalah alat utama untuk mendeteksi multikolinieritas. VIF > 10 (atau > 5 menurut sebagian ahli) mengindikasikan multikolinieritas bermasalah.",
+    formula:"VIF = 1/(1−R²_j), di mana R²_j = R² regresi Xⱼ terhadap variabel bebas lainnya" },
+  { q:"Apa yang dimaksud dengan 'power of a test' dalam pengujian hipotesis?", options:["Probabilitas menolak H0 ketika H0 benar","Probabilitas tidak menolak H0 ketika H0 salah","Probabilitas menolak H0 ketika H0 salah (benar mendeteksi efek)","Nilai kritis pengujian","Tingkat signifikansi pengujian"], answer:2, explanation:"<strong>Power (kekuatan uji)</strong> = P(menolak H0 | H0 salah) = 1 − β. Semakin tinggi power, semakin baik uji dalam mendeteksi perbedaan yang sesungguhnya ada.",
+    formula:"Power = 1 − β = P(menolak H0 | H1 benar)" },
+  { q:"Dalam survei BPS, Non-Response Error dapat dikurangi dengan...", options:["Memperbesar ukuran sampel","Menggunakan simple random sampling","Follow-up atau penggantian sampel yang tidak merespons","Mengurangi jumlah variabel yang diukur","Menggunakan stratified sampling"], answer:2, explanation:"<strong>Non-response error</strong> terjadi ketika unit sampel tidak memberikan respons. Cara menguranginya antara lain: <strong>follow-up</strong> pada unit yang tidak merespons, insentif, atau prosedur penggantian sampel yang sistematis." },
+  { q:"Ukuran penyebaran yang tidak terpengaruh oleh nilai ekstrim (outlier) adalah...", options:["Varians","Standar deviasi","Range","Interquartile Range (IQR)","Koefisien variasi"], answer:3, explanation:"<strong>Interquartile Range (IQR = Q3 − Q1)</strong> hanya menggunakan nilai di antara persentil 25 dan 75, sehingga tidak terpengaruh oleh nilai ekstrim. Range, varians, dan standar deviasi sangat sensitif terhadap outlier.",
+    formula:"IQR = Q3 − Q1" },
+  { q:"Dalam diagram pencar (scatter plot) yang menunjukkan titik-titik tersebar merata di sekitar nilai 0 pada sumbu residual, hal ini mengindikasikan...", options:["Adanya heteroskedastisitas","Adanya autokorelasi","Asumsi homoskedastisitas terpenuhi","Distribusi residual tidak normal","Adanya multikolinieritas"], answer:2, explanation:"Jika residual tersebar <strong>merata/random di sekitar 0</strong> tanpa pola tertentu pada scatter plot residual vs. fitted values, maka <strong>asumsi homoskedastisitas terpenuhi</strong>. Pola corong/melebar mengindikasikan heteroskedastisitas." }
+];
+
+// ─── STATE ───
+let currentBank=[], currentIndex=0, userAnswers=[], questionOrder=[], quizMode='';
+let lastResultData=null, reviewFilter='all';
+
+// ─── SCREENS ───
+function showScreen(name) {
+  ['home','quiz','results','review'].forEach(s => {
+    document.getElementById('screen-'+s).style.display = (s===name ? 'block' : 'none');
+  });
+}
+
+// ─── QUIZ ───
+function startQuiz(mode) {
+  quizMode=mode;
+  currentBank = mode==='official' ? officialQuestions : extraQuestions;
+  const n=currentBank.length;
+  questionOrder = [...Array(n).keys()];
+  if (S.mode==='random') questionOrder.sort(()=>Math.random()-0.5);
+  userAnswers = Array(n).fill(null);
+  currentIndex=0;
+  document.getElementById('quizTitleBar').textContent = mode==='official' ? '📋 Soal UKOM Resmi (50 Soal)' : '🎓 Soal Tambahan (35 Soal)';
+  document.getElementById('progressWrap').style.display = S.dots ? '' : 'none';
+  showScreen('quiz');
+  buildDots(); renderQ();
+}
+
+function buildDots() {
+  const c=document.getElementById('progressDots'); c.innerHTML='';
+  questionOrder.forEach((_,idx)=>{
+    const d=document.createElement('div');
+    d.className='dot'; d.textContent=idx+1; d.id='dot-'+idx;
+    d.onclick=()=>jumpTo(idx); c.appendChild(d);
+  });
+}
+
+function updateDots() {
+  questionOrder.forEach((origIdx,displayIdx)=>{
+    const dot=document.getElementById('dot-'+displayIdx); if(!dot)return;
+    dot.className='dot';
+    if(displayIdx===currentIndex) dot.classList.add('current');
+    const a=userAnswers[origIdx];
+    if(a!==null) dot.classList.add(a===currentBank[origIdx].answer?'correct':'wrong');
+  });
+}
+
+function renderQ() {
+  const origIdx=questionOrder[currentIndex];
+  const q=currentBank[origIdx];
+  const n=currentBank.length;
+  const answered=userAnswers[origIdx];
+  const L=['A','B','C','D','E'];
+
+  document.getElementById('progressFill').style.width=`${((currentIndex+1)/n)*100}%`;
+  document.getElementById('qCounter').textContent=`${currentIndex+1} / ${n}`;
+  const correct=userAnswers.filter((a,i)=>a!==null&&a===currentBank[i].answer).length;
+  const done=userAnswers.filter(a=>a!==null).length;
+  document.getElementById('liveScore').textContent=`✓ ${correct} / ${done}`;
+
+  const optHtml=q.options.map((opt,i)=>{
+    let cls='option';
+    if(answered!==null){ cls+=' disabled'; if(i===q.answer) cls+=' correct-ans'; else if(i===answered) cls+=' wrong-ans'; }
+    return `<div class="${cls}" onclick="selectAns(${i})"><div class="option-letter">${L[i]}</div><div class="option-text">${opt}</div></div>`;
+  }).join('');
+
+  let fbHtml='';
+  if(answered!==null && S.explain){
+    const ok=answered===q.answer;
+    const fml=q.formula?`<div class="feedback-formula">📐 ${q.formula}</div>`:'';
+    fbHtml=`<div class="feedback ${ok?'correct':'wrong'}">
+      <div class="feedback-header">${ok?'✅ Benar!':'❌ Kurang tepat'} — Jawaban: ${L[q.answer]}. ${q.options[q.answer]}</div>
+      <div class="feedback-body">${q.explanation}${fml}</div>
+    </div>`;
+  }
+
+  document.getElementById('questionCard').innerHTML=`
+    <div class="q-number">Soal ${currentIndex+1} dari ${n}</div>
+    <div class="q-text">${q.q}</div>
+    <div class="options">${optHtml}</div>
+    ${fbHtml}
+  `;
+
+  document.getElementById('btnPrev').disabled=currentIndex===0;
+  const isLast=currentIndex===n-1;
+  const allDone=userAnswers.filter(a=>a!==null).length===n;
+  const nb=document.getElementById('btnNext');
+  if(isLast&&allDone){ nb.textContent='🏁 Lihat Hasil'; nb.onclick=showResults; nb.disabled=false; }
+  else { nb.textContent='Selanjutnya →'; nb.onclick=()=>navigate(1); nb.disabled=isLast; }
+  updateDots();
+}
+
+function selectAns(idx) {
+  const origIdx=questionOrder[currentIndex];
+  if(userAnswers[origIdx]!==null) return;
+  userAnswers[origIdx]=idx;
+  renderQ();
+  const n=currentBank.length;
+  const allDone=userAnswers.filter(a=>a!==null).length===n;
+  if(currentIndex<n-1) setTimeout(()=>navigate(1), S.explain?1800:600);
+  else if(allDone){ const nb=document.getElementById('btnNext'); nb.textContent='🏁 Lihat Hasil'; nb.onclick=showResults; nb.disabled=false; }
+}
+
+function navigate(dir) {
+  const n=currentBank.length;
+  currentIndex=Math.max(0,Math.min(n-1,currentIndex+dir));
+  renderQ();
+}
+function jumpTo(idx){ currentIndex=idx; renderQ(); }
+
+// ─── RESULTS ───
+function showResults() {
+  const n=currentBank.length;
+  const correct=userAnswers.filter((a,i)=>a!==null&&a===currentBank[i].answer).length;
+  const wrong=userAnswers.filter((a,i)=>a!==null&&a!==currentBank[i].answer).length;
+  const skipped=userAnswers.filter(a=>a===null).length;
+  const pct=Math.round((correct/n)*100);
+  lastResultData={correct,wrong,skipped,pct,n};
+
+  const ringCls=pct>=80?'great':pct>=60?'good':'poor';
+  const msg=pct>=80?'🏆 Luar Biasa!':pct>=60?'👍 Cukup Baik':'📚 Perlu Lebih Banyak Latihan';
+
+  document.getElementById('resultCard').innerHTML=`
+    <div class="result-score-ring ${ringCls}">
+      <div class="score-big">${correct}</div><div class="score-pct">dari ${n}</div>
+    </div>
+    <div class="result-title">${msg}</div>
+    <div class="result-sub">Kamu menjawab benar ${correct} dari ${n} soal (${pct}%)</div>
+    <div class="result-breakdown">
+      <div class="breakdown-item c"><div class="breakdown-num">${correct}</div><div class="breakdown-label">✅ Benar</div></div>
+      <div class="breakdown-item w"><div class="breakdown-num">${wrong}</div><div class="breakdown-label">❌ Salah</div></div>
+      <div class="breakdown-item s"><div class="breakdown-num">${skipped}</div><div class="breakdown-label">⬜ Dilewati</div></div>
+    </div>
+    <div class="result-actions">
+      <button class="btn-primary green" onclick="openReview('all')">📖 Review Semua</button>
+      <button class="btn-primary blue" onclick="openReview('wrong')">❌ Review yang Salah (${wrong})</button>
+    </div>
+    <div class="result-actions" style="margin-top:8px;">
+      <button class="btn-primary" onclick="startQuiz('${quizMode}')">🔄 Ulangi</button>
+      <button class="btn-secondary" onclick="goHome()">🏠 Menu Utama</button>
+    </div>
+  `;
+
+  try { localStorage.setItem('lastScore', pct+'%'); localStorage.setItem('lastWrong', wrong); } catch(e){}
+  document.getElementById('stat-score').textContent = pct+'%';
+  document.getElementById('stat-wrong').textContent = wrong;
+  showScreen('results');
+}
+
+// ─── REVIEW ───
+function openReview(filter) {
+  reviewFilter=filter;
+  setReviewFilter(filter, true);
+  showScreen('review');
+}
+
+function setReviewFilter(filter, skipRender) {
+  reviewFilter=filter;
+  document.getElementById('tab-all').classList.toggle('active', filter==='all');
+  document.getElementById('tab-wrong').classList.toggle('active', filter==='wrong');
+  document.getElementById('reviewScreenTitle').textContent = filter==='wrong' ? '❌ Review Jawaban Salah' : '📖 Review Semua Jawaban';
+  if(!skipRender) renderReview();
+  else renderReview();
+}
+
+function renderReview() {
+  const L=['A','B','C','D','E'];
+  const n=currentBank.length;
+  const container=document.getElementById('reviewAccordion');
+
+  let items=questionOrder.map((origIdx,displayIdx)=>({origIdx,displayIdx}));
+  if(reviewFilter==='wrong'){
+    items=items.filter(({origIdx})=>{
+      const a=userAnswers[origIdx];
+      return a===null || a!==currentBank[origIdx].answer;
+    });
+  }
+
+  if(items.length===0){
+    container.innerHTML=`<div class="empty-state"><div class="em-icon">🎉</div><div class="em-title">Tidak ada jawaban salah!</div><div>Semua jawaban benar. Luar biasa!</div></div>`;
+    return;
+  }
+
+  container.innerHTML=items.map(({origIdx,displayIdx})=>{
+    const q=currentBank[origIdx];
+    const a=userAnswers[origIdx];
+    const isSkip=a===null;
+    const isCorrect=!isSkip && a===q.answer;
+    const cls=isSkip?'skipped':isCorrect?'correct':'wrong';
+    const icon=isSkip?'⬜':isCorrect?'✅':'❌';
+
+    const shortQ=q.q.length>70?q.q.slice(0,70)+'…':q.q;
+    const ansQuick=isSkip?'Tidak dijawab':isCorrect?`${L[a]} — Benar`:`${L[a]} ✗  →  ${L[q.answer]} ✓`;
+
+    const optHtml=q.options.map((opt,i)=>{
+      let cls2='rev-option';
+      if(i===q.answer) cls2+=' correct-ans';
+      else if(!isSkip && i===a) cls2+=' wrong-ans';
+      else cls2+=' neutral-ans';
+      const extra=i===q.answer?'✓ Jawaban Benar':'';
+      return `<div class="${cls2}">
+        <div class="rev-opt-letter">${L[i]}</div>
+        <div class="rev-opt-text">${opt} ${extra?`<span style="color:var(--green);font-size:11px;font-family:'JetBrains Mono',monospace;margin-left:4px;">${extra}</span>`:''}</div>
+      </div>`;
+    }).join('');
+
+    const fml=q.formula?`<div class="rev-formula">📐 ${q.formula}</div>`:'';
+
+    return `<div class="rev-item ${cls}" id="revitem-${origIdx}">
+      <div class="rev-header" onclick="toggleRevItem(${origIdx})">
+        <div class="rev-status-icon">${icon}</div>
+        <div class="rev-q-preview">Soal ${displayIdx+1}: ${shortQ}</div>
+        <div class="rev-ans-quick">${ansQuick}</div>
+        <div class="rev-chevron">▼</div>
+      </div>
+      <div class="rev-body">
+        <div class="rev-q-full">${q.q}</div>
+        <div class="rev-options">${optHtml}</div>
+        <div class="rev-explanation">
+          <div class="rev-explanation-label">💡 Penjelasan</div>
+          <div class="rev-explanation-text">${q.explanation}${fml}</div>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function toggleRevItem(origIdx) {
+  const el=document.getElementById('revitem-'+origIdx);
+  if(el) el.classList.toggle('open');
+}
+
+function backToResults() { showScreen('results'); }
+
+function goHome() {
+  showScreen('home');
+  try {
+    const s=localStorage.getItem('lastScore'), w=localStorage.getItem('lastWrong');
+    if(s) document.getElementById('stat-score').textContent=s;
+    if(w) document.getElementById('stat-wrong').textContent=w;
+  } catch(e){}
+}
+
+// init
+(function(){
+  try {
+    const s=localStorage.getItem('lastScore'), w=localStorage.getItem('lastWrong');
+    if(s) document.getElementById('stat-score').textContent=s;
+    if(w) document.getElementById('stat-wrong').textContent=w;
+  } catch(e){}
+  showScreen('home');
+})();
+</script>
+</body>
+</html>
